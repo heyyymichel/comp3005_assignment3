@@ -10,25 +10,25 @@ university_database = psycopg2.connect(
 
 sendQ = university_database.cursor();
 
-def getAllStudents():
+def getAllStudents(): #gets all students from student table
     sendQ.execute("SELECT * FROM students")
     sTable = sendQ.fetchall() #get back all students from student table
 
     for student in sTable:
         print(student)
-def addStudent(fn,ln,em,ed):
+def addStudent(fn,ln,em,ed): #adds new student to student table
     addNew = """INSERT INTO students(first_name,last_name,email,enrollment_date) VALUES (%s,%s,%s,%s)"""
     newStudent = (fn,ln,em,ed)
     sendQ.execute(addNew,newStudent)
     university_database.commit()
     getAllStudents()
-def updateStudentEmail(s_id,n_email):
+def updateStudentEmail(s_id,n_email): #updates email of students
     updated="""UPDATE students SET email = %s WHERE student_id = %s """
     u_email = (n_email,s_id)
     sendQ.execute(updated,u_email)
     university_database.commit()
     getAllStudents()
-def deleteStudent(s_id):
+def deleteStudent(s_id): #deletes student based off student id
     deleted="""DELETE FROM students WHERE student_id = %s"""
     d_student = (s_id)
     sendQ.execute(deleted,(d_student,))
