@@ -1,4 +1,5 @@
 TO RUN CODE
+VIDEO: https://youtu.be/dK64CYBPlL0
 IN POSTGRESQL:
     -Copy and paste the initializer code into the Query Tool
 In IDE:
